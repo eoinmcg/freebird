@@ -7,42 +7,69 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style type="text/css">
-body{margin:0;padding:0;background:#000;font: 1em normal Rammetto One, Tahoma, sans-serif;} 
+@font-face {
+  font-family: "Rammetto One";
+  src: url(a/Rammetto.ttf) format("truetype");
+}
+body{margin:0;padding:0;background:#000;font: 1em normal 'Rammetto One', Tahoma, sans-serif;} 
 canvas{display:block;margin:0 auto;background:#000;}
-#o{display:none;position:absolute;width:20%;top:2em;left:40%;margin:2em auto;color:#f0f;text-align:center;font-size:140%;}
+#o{display:none;position:absolute;width:100%;height: 100%;top:0;left:0;margin:0 auto;color:#f0f;text-align:center;font-size:140%; background: #2e3436 url(a/o.png) center center no-repeat; text-transform: uppercase;}
+#o p { padding: 2em !important;  }
+#ad { display: none; position: absolute; z-index: 30000; left: 0px; bottom: 0px; width: 320px; height: 60px; color: #fff; background: #000; text-align: center; }
+#adLarge { display: none; position: absolute; z-index: 30000; left: 0px; bottom: 0px; width: 300px; height: 250px; color: #fff; background: #000; text-align: center; }
 </style>
+<link rel="apple-touch-startup-image" href="applestart.png" />
+<link rel="apple-touch-icon" href="appleicon.png" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-</head>
 <body>
 <canvas></canvas>
-<div id="o">Please rotate your device</div>
+<div id="o"><p>Please rotate your device</p></div>
+<div id="ad">AD 320x60</div>
+<div id="adLarge">AD 300x200</div>
 
-<script src="js/lib/inheritance.js"></script>
+<audio preload>
+  <source src="a/audio.mp3" type="audio/mp3"></source>
+  <source src="a/audio.ogg" type="audio/ogg"></source>
+</audio>
 
-<script src="js/base.js"></script>
-<script src="js/draw.js"></script>
-<script src="js/game.js"></script>
-<script src="js/animation.js"></script>
-<script src="js/particle.js"></script>
-<script src="js/sprite.js"></script>
-<script src="js/levels.js"></script>
+<script src="sf/lib/inheritance.js"></script>
 
-<script src="js/states/intro.js"></script>
-<script src="js/states/splash.js"></script>
-<script src="js/states/tutorial.js"></script>
-<script src="js/states/play.js"></script>
-<script src="js/states/gameover.js"></script>
-<script src="js/states/victory.js"></script>
+<script src="sf/core/base.js"></script>
+<script src="sf/core/draw.js"></script>
+<script src="sf/core/input.js"></script>
+<script src="sf/core/game.js"></script>
+<script src="sf/core/animation.js"></script>
+<script src="sf/core/particle.js"></script>
+<script src="sf/core/audio.js"></script>
+<script src="sf/core/sprite.js"></script>
+<script src="sf/core/button.js"></script>
+<script src="sf/levels.js"></script>
+<script src="sf/data.js"></script>
+<script src="sf/translations.js"></script>
 
-<script src="js/entities/text.js"></script>
-<script src="js/entities/bird.js"></script>
-<script src="js/entities/coin.js"></script>
+<script src="sf/states/loader.js"></script>
+<script src="sf/states/intro.js"></script>
+<script src="sf/states/splash.js"></script>
+<script src="sf/states/tutorial.js"></script>
+<script src="sf/states/play.js"></script>
+<script src="sf/states/gameover.js"></script>
+<script src="sf/states/victory.js"></script>
 
-<script src="js/entities/tree.js"></script>
-<script src="js/entities/hornet.js"></script>
-<script src="js/entities/fly.js"></script>
-<script src="js/entities/snapper.js"></script>
-<script src="js/entities/mozzie.js"></script>
-<script src="js/entities/vamp.js"></script>
+<script src="sf/entities/text.js"></script>
+<script src="sf/entities/bird.js"></script>
+<script src="sf/entities/coin.js"></script>
+<script src="sf/entities/cloud.js"></script>
+
+<script src="sf/entities/tree.js"></script>
+<script src="sf/entities/hornet.js"></script>
+<script src="sf/entities/fly.js"></script>
+<script src="sf/entities/snapper.js"></script>
+<script src="sf/entities/mozzie.js"></script>
+<script src="sf/entities/vamp.js"></script>
+<script src="sf/entities/powerup.js"></script>
+<script src="sf/entities/buttons.js"></script>
+
+<script src="booster.js"></script>
+
 </body>
 </html>

@@ -12,9 +12,10 @@ optimise = 'SIMPLE'
 # destination for our concatented and compressed js file 
 compressed = 'g.js'
 # files to be included in the zip
-files = ['index.html', 'b.png', 't.png', 'manifest.appcache', 'favicon.ico', compressed]
+files = ['index.html', 'favicon.ico', compressed]
 # target folder for all our zip files
 folder = 'game'
+
 
 # grab all scripts from our dev html for concatentation 
 dev_file = open(dev, 'r')
@@ -56,49 +57,61 @@ final_js.close()
 
 
 # update our index.html to mirror dev.html
-dev_file = open(dev, 'r')
-html = dev_file.read() 
-dev_file.close()
+# dev_file = open(dev, 'r')
+# html = dev_file.read() 
+# dev_file.close()
+# 
+# soup = BeautifulSoup(html)
+# 
+# # remove all script tags
+# for tag in soup.findAll('script'):
+#     tag.extract()
+# 
+# # append final script tag to body
+# script = Tag(soup, "script")
+# script["src"] = compressed
+# soup.body.insert(soup.body.contents, script)
+# 
+# index_file = open(index, 'w')
+# index_file.write(soup.prettify())
+# index_file.close()
 
-soup = BeautifulSoup(html)
+os.remove('all.js')
 
-# remove all script tags
-for tag in soup.findAll('script'):
-    tag.extract()
 
-# append final script tag to body
-script = Tag(soup, "script")
-script["src"] = compressed
-soup.body.insert(soup.body.contents, script)
-
-index_file = open(index, 'w')
-index_file.write(soup.prettify())
-index_file.close()
-
-for line in fileinput.FileInput(index,inplace=1):
-    line = line.replace('<html>', '<html manifest="manifest.appcache">')
-    print line,
+# for line in fileinput.FileInput(index,inplace=1):
+#     line = line.replace('<html>', '<html manifest="manifest.appcache">')
+#     print line,
 
 # create folder for our game, if it doesnt exist
-if not os.path.exists(folder):
-    os.makedirs(folder)
+# if not os.path.exists(folder):
+    # os.makedirs(folder)
 
-# copy files into folder (to avoid creating a zip bomb)
-for filename in files:
-    shutil.copy2(filename, folder + '/' + filename)
+# if not os.path.exists(folder+'/a'):
+    # os.makedirs(folder+'/a')
+# 
+# # copy files into folder (to avoid creating a zip bomb)
+# for filename in files:
+    # print folder + '/' + filename
+    # shutil.copy2(filename, folder + '/' + filename)
 
 
-# zip all our files
-zf = ZipFile(folder + '.zip', 'w', ZIP_DEFLATED)
-for filename in files:
-    zf.write(folder + '/' + filename)
-zf.close()
+# distutils.dir_util.copy_tree('a', folder)
+# shutil.copytree('/store/public_html/arcade/freebird/a', '/store/public_html/arcade/freebird/game/')
 
-# and a bit of a cleanup
-shutil.rmtree(folder)
-
+# 
+# 
+# # zip all our files
+# zf = ZipFile(folder + '.zip', 'w', ZIP_DEFLATED)
+# for filename in files:
+    # zf.write(folder + '/' + filename)
+# zf.close()
+# 
+# # and a bit of a cleanup
+# shutil.rmtree(folder)
+# 
 # finally, tell us how much we've squeezed in
-total = os.path.getsize(folder + '.zip')
-remaining = 13312 - total
-print 'Total used: ', total
-print 'Bytes remaining: ', remaining
+# total = os.path.getsize(folder + '.zip')
+# remaining = 13312 - total
+# print 'Total used: ', total
+# print 'Bytes remaining: ', remaining

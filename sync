@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./min.py
+s3cmd sync /home/eoin/public_html/arcade/freebird/ s3://arcade.starfish.ie/freebird/
